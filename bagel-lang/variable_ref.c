@@ -3,8 +3,8 @@
 #include "variable_ref.h"
 
 #include "ast_context.h"
-#include "function.h"
-#include "function_sig.h"
+#include "func.h"
+#include "func_sig.h"
 #include "source_file.h"
 #include "statement_block.h"
 #include "variable.h"
@@ -24,7 +24,7 @@ static struct c_ast_node *c_ast_resolve_variable_ref(struct c_ast_node *node, st
         for (; statement_block != NULL; statement_block = statement_block->node_parent) {
             var = c_ast_statement_block_variables(statement_block);
             for (; var != NULL; var = c_ast_node_next(var)) {
-                if (strcmp(c_ast_variable_ref_name(var_ref), c_ast_variable_name(var)) == 0) {
+                if (strcmp(c_ast_variable_ref_symbol(var_ref), c_ast_variable_symbol(var)) == 0) {
                     return var;
                 }
             }
@@ -32,18 +32,18 @@ static struct c_ast_node *c_ast_resolve_variable_ref(struct c_ast_node *node, st
     }
 
     {
-        var = c_ast_function_func_sig(context->current_function)->param_list;
+        var = c_ast_func_sig_param_list(c_ast_func_func_sig(context->current_func));
         for (; var != NULL; var = c_ast_node_next(var)) {
-            if (strcmp(c_ast_variable_ref_name(var_ref), c_ast_variable_name(var)) == 0) {
+            if (strcmp(c_ast_variable_ref_symbol(var_ref), c_ast_variable_symbol(var)) == 0) {
                 return var;
             }
         }
     }
 
     {
-        var = c_ast_source_file_variables(context->current_source_file);
+        var = c_ast_source_file_vars(context->current_source_file);
         for (; var != NULL; var = c_ast_node_next(var)) {
-            if (strcmp(c_ast_variable_ref_name(var_ref), c_ast_variable_name(var)) == 0) {
+            if (strcmp(c_ast_variable_ref_symbol(var_ref), c_ast_variable_symbol(var)) == 0) {
                 return var;
             }
         }
@@ -56,11 +56,11 @@ static struct c_ast_node *c_ast_evaluate_variable_ref(struct c_ast_node *node, s
     return c_ast_resolve_variable_ref(node, context);
 }
 
-struct c_ast_node *c_ast_variable_ref_create(const char *name) {
+struct c_ast_node *c_ast_variable_ref_create(const char *symbol) {
     struct c_ast_variable_ref *node = c_ast_variable_ref_cast(malloc(sizeof *node));
     node->node_type = c_ast_node_type_variable_ref;
     node->node_evaluate_fn = c_ast_evaluate_variable_ref;
-    strcpy(node->name, name, strlen(name));
+    strcpy(node->symbol, symbol);
 
     return c_ast_node_cast(node);
 }

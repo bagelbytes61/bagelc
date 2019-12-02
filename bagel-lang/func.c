@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "function.h"
+#include "func.h"
 
 #include "ast_context.h"
 #include "statement_block.h"
@@ -9,20 +9,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct c_ast_node *c_ast_evaluate_function(struct c_ast_node *node, struct c_ast_context *context) {
-    printf("%s:\n", c_ast_function_func_name(node));
+struct c_ast_node *c_ast_evaluate_func(struct c_ast_node *node, struct c_ast_context *context) {
+    printf("%s:\n", c_ast_func_func_symbol(node));
     puts("PUSH EBP");
     puts("MOV  EBP, ESP");
 
     {
-        struct c_ast_node *function = c_ast_function_func_sig(node);
-        c_ast_node_evaluate(function, context);
+        struct c_ast_node *func = c_ast_func_func_sig(node);
+        c_ast_node_evaluate(func, context);
     }
 
-    context->current_function = node;
+    context->current_func = node;
 
     {
-        struct c_ast_node *statement_list = c_ast_function_func_body(node);
+        struct c_ast_node *statement_list = c_ast_func_func_body(node);
         for (; statement_list != NULL; statement_list = c_ast_node_next(statement_list)) {
             c_ast_node_evaluate(statement_list, context);
         }
@@ -35,14 +35,14 @@ struct c_ast_node *c_ast_evaluate_function(struct c_ast_node *node, struct c_ast
     return NULL;
 }
 
-struct c_ast_node *c_ast_function_create(const char *func_name, struct c_ast_function_sig *func_sig, struct c_ast_statement_list *func_body) {
-    struct c_ast_function *node = c_ast_function_cast(malloc(sizeof *node));
+struct c_ast_node *c_ast_func_create(const char *symbol, struct c_ast_node *sig, struct c_ast_node *body) {
+    struct c_ast_func *node = c_ast_func_cast(malloc(sizeof *node));
     memset(node, 0, sizeof *node);
-    node->node_type = c_ast_node_type_function;
-    node->node_evaluate_fn = c_ast_evaluate_function;
-    strcpy(node->func_name, func_name);
-    node->func_sig = func_sig;
-    node->func_body = func_body;
+    node->node_type = c_ast_node_type_func;
+    node->node_evaluate_fn = c_ast_evaluate_func;
+    strcpy(node->func_symbol, symbol);
+    node->func_sig = sig;
+    node->func_body = body;
 
     return c_ast_node_cast(node);
 }

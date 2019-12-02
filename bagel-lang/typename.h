@@ -5,7 +5,7 @@
 
 #include "ast_node.h"
 
-#include <stddef.h>
+#include <stdint.h>
 
 enum c_ast_typename_type {
     c_ast_typename_type_int,
@@ -22,8 +22,8 @@ struct c_ast_typename {
     c_ast_node_contents;
 
     enum c_ast_typename_type type;
-    size_t                   alignment;
-    size_t                   size;
+    uint32_t                 alignment;
+    uint32_t                 size;
 };
 
 #define c_ast_typename_cast(node) ((struct c_ast_typename *)(node))

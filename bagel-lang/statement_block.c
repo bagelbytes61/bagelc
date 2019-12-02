@@ -37,11 +37,13 @@ static struct c_ast_node *c_ast_evaluate_statement_block(struct c_ast_node *node
     return NULL;
 }
 
-struct c_ast_node *c_ast_statement_block_create(void) {
+struct c_ast_node *c_ast_statement_block_create(struct c_ast_node *vars, struct c_ast_node *statements) {
     struct c_ast_statement_block *node = c_ast_statement_block_cast(malloc(sizeof *node));
     memset(node, 0, sizeof *node);
     node->node_type = c_ast_node_type_statement_block;
     node->node_evaluate_fn = c_ast_evaluate_statement_block;
+    node->variables = vars;
+    node->statements = statements;
 
     return c_ast_node_cast(node);
 }

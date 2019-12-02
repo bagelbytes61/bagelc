@@ -1,6 +1,7 @@
 #include "return.h"
 
 #include "ast_context.h"
+#include "typename.h"
 #include "variable.h"
 
 #include <stdio.h>
@@ -16,12 +17,10 @@ static struct c_ast_node *c_ast_evaluate_return(struct c_ast_node *node, struct 
 
     if (c_ast_node_type(expression) == c_ast_node_type_variable) {
         if (c_ast_variable_type(expression) == c_ast_variable_type_stack) {
-            printf("MOV EAX, [EBP - %zd]\n", c_ast_variable_type(expression) ==  c_ast_variable_type_stack
-                ? c_ast_variable_rel_addr(expression)
-                : c_ast_variable_abs_addr(expression));
+            printf("MOV EAX, [EBP - %u]\n", c_ast_variable_rel_addr(expression));
         }
         else {
-
+            printf("MOV EAX, %s\n", c_ast_variable_symbol(expression));
         }
     }
 

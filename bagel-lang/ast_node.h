@@ -3,6 +3,8 @@
 
 #pragma once
 
+struct c_ast_context;
+
 typedef struct c_ast_node *(*c_ast_evaluate_fn)(struct c_ast_node *, struct c_ast_context *);
 
 enum c_ast_node_type {
@@ -23,15 +25,17 @@ enum c_ast_node_type {
 
     c_ast_node_type_typename,
 
-    c_ast_node_type_function,
-    c_ast_node_type_function_ref,
+    c_ast_node_type_func_call,
+
+    c_ast_node_type_func,
+    c_ast_node_type_func_ref,
 
     c_ast_node_type_variable,
     c_ast_node_type_variable_ref,
 
-    c_ast_node_type_function_arg,
-    c_ast_node_type_function_param,
-    c_ast_node_type_function_sig,
+    c_ast_node_type_func_arg,
+    c_ast_node_type_func_param,
+    c_ast_node_type_func_sig,
 
     c_ast_node_type_return,
 };
@@ -54,18 +58,18 @@ struct c_ast_node {
 
 #define c_ast_node_cast(node) ((struct c_ast_node *)(node))
 
-#define c_ast_node_append(node, t)                          \
-    do {                                                    \
-        struct c_ast_node *n = node;                        \
-        if (n) {                                            \
-            for (; n->node_next != NULL; n = n->node_next); \
-            n->node_next = t;                               \
-        }                                                   \
-        else {                                              \
-            node = t;                                       \
-        }                                                   \
-    } while (0)
+static struct c_ast_node *c_ast_node_append(struct c_ast_node *node, struct c_ast_node *t) {
+    struct c_ast_node *n = node;
+    if (n) {
+        for (; n->node_next != 0; n = n->node_next);
+        n->node_next = t;
+    }
+    else {
+        node = t;
+    }
 
+    return node;
+}
 void c_ast_node_free(struct c_ast_node *node);
 
 #endif

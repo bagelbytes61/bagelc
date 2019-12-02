@@ -12,7 +12,7 @@ enum c_ast_variable_type {
     c_ast_variable_type_global
 };
 
-#define c_ast_variable_name(node)        (((struct c_ast_variable *)(node))->name)
+#define c_ast_variable_symbol(node)      (((struct c_ast_variable *)(node))->symbol)
 #define c_ast_variable_typename(node)    (((struct c_ast_variable *)(node))->typename)
 #define c_ast_variable_type(node)        (((struct c_ast_variable *)(node))->type)
 #define c_ast_variable_abs_addr(node)    (((struct c_ast_variable *)(node))->abs_addr)
@@ -24,7 +24,7 @@ enum c_ast_variable_type {
 struct c_ast_variable {
     c_ast_node_contents;
 
-    char                     name[255];
+    char                     symbol[255];
     struct c_ast_typename   *typename;
     enum c_ast_variable_type type;
 
@@ -35,11 +35,11 @@ struct c_ast_variable {
         int                     int_value;
         float                   float_value;
         struct c_ast_structure *structure_value;
-    };
+    } values;
 };
 
 #define c_ast_variable_cast(node) ((struct c_ast_variable *)(node))
 
-struct c_ast_node *c_ast_variable_create(const char *name, struct c_ast_typename *typename);
+struct c_ast_node *c_ast_variable_create(const char *symbol, struct c_ast_node *typename, enum c_ast_variable_type type);
 
 #endif

@@ -9,11 +9,27 @@
 
 static struct c_ast_node *c_ast_evaluate_addition(struct c_ast_node *node, struct c_ast_context * context) {
 
-    struct c_ast_node *lhs_result = c_ast_node_evaluate(c_ast_binary_op_lhs_exp(node), context);
-    struct c_ast_node *rhs_result = c_ast_node_evaluate(c_ast_binary_op_rhs_exp(node), context);
+    struct c_ast_node *lhs_exp = c_ast_node_evaluate(c_ast_binary_op_lhs_exp(node), context);
+    struct c_ast_node *rhs_exp = c_ast_node_evaluate(c_ast_binary_op_rhs_exp(node), context);
     
-    printf("MOV EAX, DWORD [EBP - %u]\n", c_ast_variable_rel_addr(lhs_result));
-    printf("MOV EBX, DWORD [EBP - %u]\n", c_ast_variable_rel_addr(rhs_result));
+    if (c_ast_node_type(lhs_exp) == c_ast_node_type_variable) {
+        if (c_ast_variable_type(lhs_exp) == c_ast_variable_type_stack) {
+            printf("MOV EAX, DWORD [EBP - %u]\n", c_ast_variable_rel_addr(lhs_exp));
+        }
+        else {
+            printf("MOV EAX, DWORD [%s]\n", c_ast_variable_symbol(lhs_exp));
+        }
+    }
+
+    if (c_ast_node_type(rhs_exp) == c_ast_node_type_variable) {
+        if (c_ast_variable_type(rhs_exp) == c_ast_variable_type_stack) {
+            printf("MOV EBX, DWORD [EBP - %u]\n", c_ast_variable_rel_addr(rhs_exp));
+        }
+        else {
+            printf("MOV EBX, DWORD [%s]\n", c_ast_variable_symbol(rhs_exp));
+        }
+    }
+
     printf("ADD EAX, EBX\n");
 
     return NULL;
