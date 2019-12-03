@@ -23,3 +23,12 @@ struct c_ast_node *c_ast_typename_create_builtin(enum c_ast_typename_type type) 
     
     return c_ast_node_cast(node);
 }
+
+const char *c_ast_typename_type_to_string(struct c_ast_node *node) {
+    switch (c_ast_typename_type(node)) {
+        case c_ast_typename_type_int:   return "int";
+        case c_ast_typename_type_float: return "float";
+    }
+
+    return NULL;
+}

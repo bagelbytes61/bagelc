@@ -1,5 +1,5 @@
-#ifndef BAGELC_AST_NODE_H_
-#define BAGELC_AST_NODE_H_
+#ifndef C_AST_NODE_H_
+#define C_AST_NODE_H_
 
 #pragma once
 

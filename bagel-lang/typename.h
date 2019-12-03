@@ -1,5 +1,5 @@
-#ifndef BAGELC_AST_TYPENAME_H_
-#define BAGELC_AST_TYPENAME_H_
+#ifndef C_AST_TYPENAME_H_
+#define C_AST_TYPENAME_H_
 
 #pragma once
 
@@ -29,5 +29,7 @@ struct c_ast_typename {
 #define c_ast_typename_cast(node) ((struct c_ast_typename *)(node))
 
 struct c_ast_node *c_ast_typename_create_builtin(enum c_ast_typename_type type);
+
+const char *c_ast_typename_type_to_string(struct c_ast_node *node);
 
 #endif

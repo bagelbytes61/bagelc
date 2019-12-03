@@ -1,5 +1,5 @@
-#ifndef BAGELC_VARIABLE_REF_H_
-#define BAGELC_VARIABLE_REF_H_
+#ifndef C_VARIABLE_REF_H_
+#define C_VARIABLE_REF_H_
 
 #pragma once
 

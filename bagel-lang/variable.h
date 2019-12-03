@@ -1,9 +1,9 @@
-#ifndef BAGELC_VARIABLE_H_
-#define BAGELC_VARIABLE_H_
+#ifndef C_VARIABLE_H_
+#define C_VARIABLE_H_
 
 #pragma once
 
-#include "ast_node.h"
+#include "expression.h"
 
 #include <stdint.h>
 
@@ -13,10 +13,9 @@ enum c_ast_variable_type {
 };
 
 #define c_ast_variable_symbol(node)      (((struct c_ast_variable *)(node))->symbol)
-#define c_ast_variable_typename(node)    (((struct c_ast_variable *)(node))->typename)
 #define c_ast_variable_type(node)        (((struct c_ast_variable *)(node))->type)
-#define c_ast_variable_abs_addr(node)    (((struct c_ast_variable *)(node))->abs_addr)
-#define c_ast_variable_rel_addr(node)    (((struct c_ast_variable *)(node))->rel_addr)
+#define c_ast_variable_addr(node)        (((struct c_ast_variable *)(node))->addr)
+#define c_ast_variable_typename(node)    (((struct c_ast_variable *)(node))->typename)
 #define c_ast_variable_int_value(node)   (((struct c_ast_variable *)(node))->int_value)
 #define c_ast_variable_float_value(node) (((struct c_ast_variable *)(node))->float_value)
 
@@ -25,11 +24,11 @@ struct c_ast_variable {
     c_ast_node_contents;
 
     char                     symbol[255];
-    struct c_ast_typename   *typename;
     enum c_ast_variable_type type;
 
-    uint32_t                 abs_addr;
-    uint32_t                 rel_addr;
+    uint32_t                 addr;
+
+    struct c_ast_typename   *typename;
 
     union {
         int                     int_value;

@@ -1,5 +1,5 @@
-#ifndef BAGELC_STRUCTURE_H_
-#define BAGELC_STRUCTURE_H_
+#ifndef C_STRUCTURE_H_
+#define C_STRUCTURE_H_
 
 #pragma once
 

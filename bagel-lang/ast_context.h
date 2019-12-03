@@ -1,5 +1,5 @@
-#ifndef BAGELC_AST_CONTEXT_H_
-#define BAGELC_AST_CONTEXT_H_
+#ifndef C_AST_CONTEXT_H_
+#define C_AST_CONTEXT_H_
 
 #pragma once
 

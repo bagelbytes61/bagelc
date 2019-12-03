@@ -1,5 +1,5 @@
-#ifndef BAGELC_SOURCE_FILE_H_
-#define BAGELC_SOURCE_FILE_H_
+#ifndef C_SOURCE_FILE_H_
+#define C_SOURCE_FILE_H_
 
 #pragma once
 

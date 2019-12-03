@@ -1,5 +1,5 @@
-#ifndef BAGELC_FLOW_CONTROL_H_
-#define BAGELC_FLOW_CONTROL_H_
+#ifndef C_FLOW_CONTROL_H_
+#define C_FLOW_CONTROL_H_
 
 #pragma once
 

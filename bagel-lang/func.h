@@ -1,5 +1,5 @@
-#ifndef BAGELC_FUNCTION_H_
-#define BAGELC_FUNCTION_H_
+#ifndef C_FUNCTION_H_
+#define C_FUNCTION_H_
 
 #pragma once
 

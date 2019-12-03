@@ -1,5 +1,5 @@
-#ifndef BAGELC_UNARY_OPERATOR_H_
-#define BAGELC_UNARY_OPERATOR_H_
+#ifndef C_UNARY_OPERATOR_H_
+#define C_UNARY_OPERATOR_H_
 
 #include "ast_node.h"
 

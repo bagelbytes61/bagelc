@@ -30,7 +30,7 @@ struct c_ast_node *c_ast_evaluate_func(struct c_ast_node *node, struct c_ast_con
 
     printf("ADD ESP, DWORD %u\n", context->esp_offset);
     puts("POP EBP");
-    printf("RET");
+    printf("RET\n");
 
     return NULL;
 }

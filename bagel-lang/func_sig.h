@@ -1,5 +1,5 @@
-#ifndef BAGELC_FUNC_SIG_H_
-#define BAGELC_FUNC_SIG_H_
+#ifndef C_FUNC_SIG_H_
+#define C_FUNC_SIG_H_
 
 #pragma once
 

@@ -1,5 +1,5 @@
-#ifndef BAGELC_BUILTIN_TYPES_H_
-#define BAGELC_BUILTIN_TYPES_H_
+#ifndef C_BUILTIN_TYPES_H_
+#define C_BUILTIN_TYPES_H_
 
 #pragma once
 

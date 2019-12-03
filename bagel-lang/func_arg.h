@@ -1,9 +1,11 @@
-#ifndef BAGELC_FUNCTION_ARG_H_
-#define BAGELC_FUNCTION_ARG_H_
+#ifndef C_FUNCTION_ARG_H_
+#define C_FUNCTION_ARG_H_
 
 #pragma once
 
 #include "ast_node.h"
+
+#define c_ast_func_arg_exp(node) (((struct c_ast_func_arg *)(node))->exp)
 
 struct c_ast_func_arg {
     c_ast_node_contents;

@@ -16,7 +16,7 @@ static struct c_ast_node *c_ast_resolve_variable_ref(struct c_ast_node *node, st
     struct c_ast_node *var_ref, *var;
 
     {
-        var_ref = c_ast_variable_ref_cast(node);
+        var_ref = node;
     }
 
     {

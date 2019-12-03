@@ -5,9 +5,7 @@
 
 static struct c_ast_node *c_ast_evaluate_func_arg(struct c_ast_node *node, struct c_ast_context *context) {
 
-    c_ast_node_evaluate(node, context);
-
-    return NULL;
+    return c_ast_node_evaluate(node, context);
 }
 
 struct c_ast_node *c_ast_func_arg_create(struct c_ast_node *expression) {

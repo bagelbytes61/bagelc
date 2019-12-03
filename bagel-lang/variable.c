@@ -15,7 +15,7 @@ struct c_ast_node *c_ast_evaluate_variable(struct c_ast_node *node, struct c_ast
 
     if (c_ast_variable_type(node) == c_ast_variable_type_stack) {
         context->esp_offset += c_ast_typename_size(c_ast_variable_typename(node));
-        c_ast_variable_rel_addr(node) = context->esp_offset;
+        c_ast_variable_addr(node) = context->esp_offset;
 
         printf("SUB ESP, %u\n", c_ast_variable_typename(node)->size);
     }
