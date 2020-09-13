@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="compiler\c_ast_binary_op.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_context.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_flow_control.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_func.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_func_arg.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_func_call.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_func_ref.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_func_sig.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_literal.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_node.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_return.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_source_file.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_statement.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_statement_block.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_structure.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_typename.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_variable.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_variable_ref.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="compiler\c_ast_binary_op.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_builtin_types.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_context.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_expression.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_flow_control.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_func.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_func_arg.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_func_call.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_func_ref.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_func_sig.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_literal.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_node.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_return.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_source_file.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_statement.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_statement_block.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_structure.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_typename.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_unary_op.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_variable.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_variable_ref.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\c_lexer_token.h">
+      <Filter>lexer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="compiler">
+      <UniqueIdentifier>{12d277e6-6e6d-45ac-92a7-63ae0353488e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lexer">
+      <UniqueIdentifier>{db025a20-0eed-4f09-9c1f-ce1731cb61e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
