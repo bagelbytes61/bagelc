@@ -14,9 +14,9 @@
 struct c_ast_func {
     c_ast_node_contents;
 
-    char               symbol[32u];
-    struct c_ast_node *signature;
-    struct c_ast_node *body;
+    char                          symbol[32u];
+    struct c_ast_func_sig        *signature;
+    struct c_ast_statement_block *body;
 };
 
 #define c_ast_func_cast(node) ((struct c_ast_func *)(node))

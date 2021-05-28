@@ -46,9 +46,10 @@ enum c_ast_node_type {
     struct c_ast_node   *node_next;         \
     struct c_ast_node   *node_parent
 
+#define c_ast_node_cast(node) ((struct c_ast_node *)(node))
 
 #define c_ast_node_type(node)              ((node)->node_type)
-#define c_ast_node_evaluate(node, context) ((node)->node_evaluate_fn(node, context))
+#define c_ast_node_evaluate(node, context) ((node)->node_evaluate_fn(c_ast_node_cast(node), context))
 #define c_ast_node_next(node)              ((node)->node_next)
 #define c_ast_node_parent(node)            ((node)->node_parent)
 
@@ -56,12 +57,9 @@ struct c_ast_node {
     c_ast_node_contents;
 };
 
-#define c_ast_node_cast(node) ((struct c_ast_node *)(node))
-
 static struct c_ast_node *c_ast_node_list_last(struct c_ast_node *node_list) {
 
     while (node_list->node_next) {
-
         node_list = node_list->node_next;
     }
 

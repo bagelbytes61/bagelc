@@ -26,9 +26,9 @@ struct c_ast_node *c_ast_evaluate_variable(struct c_ast_node *node, struct c_ast
     return NULL;
 }
 
-struct c_ast_node *c_ast_variable_create(const char *symbol, size_t symbol_len, struct c_ast_node *typename, enum c_ast_variable_type type) {
+struct c_ast_node *c_ast_variable_create(const char *symbol, size_t symbol_len, struct c_ast_typename *typename, enum c_ast_variable_type type) {
     
-    struct c_ast_variable *node = c_ast_variable_cast(malloc(sizeof *node));
+    struct c_ast_variable *node = malloc(sizeof *node);
     memset(node, 0, sizeof *node);
     node->node_type = c_ast_node_type_variable;
     node->node_evaluate_fn = c_ast_evaluate_variable;

@@ -75,17 +75,20 @@ int main(int argc, char *argv[]) {
                 c_ast_variable_create("result", 6u, c_ast_typename_create_builtin(c_ast_typename_type_int), c_ast_variable_type_stack),
                 c_ast_node_list_append(
                     c_ast_node_list_append(
-                        c_ast_binary_op_create(c_ast_binary_op_assignment,
-                            c_ast_variable_ref_create("result"),
-                            c_ast_binary_op_create(c_ast_binary_op_addition,
-                                c_ast_variable_ref_create("x"),
-                                c_ast_variable_ref_create("y"))),
-                        c_ast_binary_op_create(c_ast_binary_op_assignment,
-                            c_ast_variable_ref_create("result"),
-                            c_ast_binary_op_create(c_ast_binary_op_addition,
+                        c_ast_statement_create(
+                            c_ast_binary_op_create(c_ast_binary_op_assignment,
                                 c_ast_variable_ref_create("result"),
-                                c_ast_variable_ref_create("global_var")))),
-                    c_ast_return_create(c_ast_variable_ref_create("result"))))),
+                                c_ast_binary_op_create(c_ast_binary_op_addition,
+                                    c_ast_variable_ref_create("x"),
+                                    c_ast_variable_ref_create("y")))),
+                        c_ast_statement_create(
+                            c_ast_binary_op_create(c_ast_binary_op_assignment,
+                                c_ast_variable_ref_create("result"),
+                                c_ast_binary_op_create(c_ast_binary_op_addition,
+                                    c_ast_variable_ref_create("result"),
+                                c_ast_variable_ref_create("global_var"))))),
+                        c_ast_statement_create(
+                            c_ast_return_create(c_ast_variable_ref_create("result")))))),
 
         c_ast_func_create("main", 4u,
             c_ast_func_sig_create(
@@ -93,11 +96,13 @@ int main(int argc, char *argv[]) {
                 NULL),
             c_ast_statement_block_create(
                 NULL,
-                c_ast_func_call_create(
-                    c_ast_func_ref_create("add"),
-                    c_ast_node_list_append(
-                        c_ast_literal_create_int(10),
-                        c_ast_literal_create_int(5))))));
+                c_ast_statement_create(
+                    c_ast_return_create(
+                        c_ast_func_call_create(
+                            c_ast_func_ref_create("add"),
+                            c_ast_node_list_append(
+                                c_ast_literal_create_int(10),
+                                c_ast_literal_create_int(5))))))));
 
 
     struct c_ast_node *main_source = c_ast_source_file_create("main.c", var_list, func_list);

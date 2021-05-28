@@ -1,5 +1,6 @@
 #include "c_ast_func_call.h"
 
+#include "c_ast_context.h"
 #include "c_ast_func.h"
 #include "c_ast_func_arg.h"
 #include "c_ast_func_ref.h"
@@ -13,10 +14,13 @@
 #include <string.h>
 
 static struct c_ast_node *c_ast_evaluate_func_call(struct c_ast_node *node, struct c_ast_context *context) {
-    struct c_ast_node *arg = NULL, *func = NULL;
+    struct c_ast_func_call *func_call = c_ast_func_call_cast(node);
+
+    struct c_ast_func_arg *arg = NULL;
+    struct c_ast_func     *func = NULL;
 
     arg = c_ast_func_call_args(node);
-    func = c_ast_node_evaluate(c_ast_func_call_ref(node), context);
+    func = c_ast_node_evaluate(func_call->func_ref, context);
     if (!func) {
         return NULL;
     }
@@ -43,6 +47,7 @@ static struct c_ast_node *c_ast_evaluate_func_call(struct c_ast_node *node, stru
                 }
 
                 printf("PUSH DWORD %u\n", c_ast_literal_int_value(arg));
+                context->esp_offset += c_ast_typename_size(c_ast_literal_typename(arg));
             }
             else if (c_ast_node_type(arg) == c_ast_node_type_variable) {
                 if (c_ast_typename_type(c_ast_variable_typename(arg)) != c_ast_typename_type(c_ast_variable_typename(param))) {
@@ -54,9 +59,11 @@ static struct c_ast_node *c_ast_evaluate_func_call(struct c_ast_node *node, stru
 
                 if (c_ast_variable_type(arg) == c_ast_variable_type_stack) {
                     printf("PUSH DWORD [ESP - %u]\n", c_ast_variable_addr(arg));
+                    context->esp_offset += c_ast_typename_size(c_ast_variable_typename(arg));
                 }
                 else if (c_ast_variable_type(arg) == c_ast_variable_type_global) {
                     printf("PUSH DWORD [%s]\n", c_ast_variable_symbol(arg));
+                    context->esp_offset += c_ast_typename_size(c_ast_variable_typename(arg));
                 }
             }
             else {

@@ -10,7 +10,7 @@
 static struct c_ast_node *c_ast_evaluate_statement_block(struct c_ast_node *node, struct c_ast_context *context) {
     {
         struct c_ast_variable *variable = c_ast_statement_block_variables(node);
-        for (; variable != NULL; variable = c_ast_node_next(variable)) {
+        for (; variable != NULL; variable = c_ast_variable_cast(c_ast_node_next(variable))) {
             c_ast_node_evaluate(variable, context);
         }
     }
@@ -33,12 +33,15 @@ static struct c_ast_node *c_ast_evaluate_statement_block(struct c_ast_node *node
     if (context->current_statement_block->node_parent != NULL) {
         context->current_statement_block = context->current_statement_block->node_parent;
     }
+    else {
+        context->current_statement_block = NULL;
+    }
 
     return NULL;
 }
 
-struct c_ast_node *c_ast_statement_block_create(struct c_ast_node *vars, struct c_ast_node *statements) {
-    struct c_ast_statement_block *node = c_ast_statement_block_cast(malloc(sizeof *node));
+struct c_ast_node *c_ast_statement_block_create(struct c_ast_variable *vars, struct c_ast_statement *statements) {
+    struct c_ast_statement_block *node = malloc(sizeof *node);
     memset(node, 0, sizeof *node);
     node->node_type = c_ast_node_type_statement_block;
     node->node_evaluate_fn = c_ast_evaluate_statement_block;

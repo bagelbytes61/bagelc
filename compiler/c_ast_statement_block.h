@@ -13,12 +13,12 @@
 struct c_ast_statement_block {
     c_ast_node_contents;
 
-    struct c_ast_node *variables;
-    struct c_ast_node *statements;
+    struct c_ast_variable *variables;
+    struct c_ast_statement *statements;
 };
 
 #define c_ast_statement_block_cast(node) ((struct c_ast_statement_block *)(node))
 
-struct c_ast_node *c_ast_statement_block_create(struct c_ast_node *vars, struct c_ast_node *statements);
+struct c_ast_node *c_ast_statement_block_create(struct c_ast_variable *vars, struct c_ast_statements *statements);
 
 #endif

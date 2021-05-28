@@ -10,11 +10,14 @@
 #include <string.h>
 
 struct c_ast_node *c_ast_evaluate_func(struct c_ast_node *node, struct c_ast_context *context) {
+    const uint32_t fp_offset = context->esp_offset;
 
     printf("%s:\n", c_ast_func_symbol(node));
     puts("PUSH EBP");
-    puts("MOV  EBP, ESP");
+    puts("MOV  EBP, ESP"); 
 
+    context->esp_offset += 4;
+    
     {
         struct c_ast_node *func = c_ast_func_signature(node);
         c_ast_node_evaluate(func, context);
@@ -23,15 +26,17 @@ struct c_ast_node *c_ast_evaluate_func(struct c_ast_node *node, struct c_ast_con
     context->current_func = node;
 
     {
-        struct c_ast_node *statement_list = c_ast_func_body(node);
-        for (; statement_list != NULL; statement_list = c_ast_node_next(statement_list)) {
-            c_ast_node_evaluate(statement_list, context);
+        struct c_ast_node *statement_block = c_ast_func_body(node);
+        for (; statement_block != NULL; statement_block = c_ast_node_next(statement_block)) {
+            c_ast_node_evaluate(statement_block, context);
         }
     }
 
-    printf("ADD ESP, DWORD %u\n", context->esp_offset);
+    printf("ADD ESP, DWORD %u\n", context->esp_offset - fp_offset - 4u);
     puts("POP EBP");
-    printf("RET\n");
+    puts("RET");
+
+    context->esp_offset = fp_offset;
 
     return NULL;
 }
@@ -42,7 +47,7 @@ struct c_ast_node *c_ast_func_create(const char *symbol, size_t symbol_len, stru
     memset(node, 0, sizeof *node);
     node->node_type = c_ast_node_type_func;
     node->node_evaluate_fn = c_ast_evaluate_func;
-    strncpy(node->signature, symbol, symbol_len);
+    strncpy(node->symbol, symbol, symbol_len);
     node->signature = signature;
     node->body = body;
 
