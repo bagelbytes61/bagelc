@@ -11,9 +11,9 @@
 #define c_ast_statement_block_parent(node)     (((struct c_ast_statement_block *)(node))->parent)
 
 struct c_ast_statement_block {
-    c_ast_node_contents;
+    c_ast_node_contents
 
-    struct c_ast_variable *variables;
+    //struct c_ast_variable *variables;
     struct c_ast_statement *statements;
 };
 

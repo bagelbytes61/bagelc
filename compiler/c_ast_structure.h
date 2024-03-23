@@ -8,7 +8,7 @@
 #define c_ast_structure_fields(node) (((struct c_ast_structure *)(node)->struct_fields)
 
 struct c_ast_structure {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     struct c_ast_node *struct_fields;
 };

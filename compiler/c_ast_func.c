@@ -3,7 +3,10 @@
 #include "c_ast_func.h"
 
 #include "c_ast_context.h"
+#include "c_ast_decl_spec.h"
+#include "c_ast_param_list.h"
 #include "c_ast_statement_block.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,16 +22,18 @@ struct c_ast_node *c_ast_evaluate_func(struct c_ast_node *node, struct c_ast_con
     context->esp_offset += 4;
     
     {
-        struct c_ast_node *func = c_ast_func_signature(node);
-        c_ast_node_evaluate(func, context);
+        //struct c_ast_func_sig *func_sig = c_ast_func_signature(node);
+        //c_ast_node_evaluate(func_sig, context);
     }
 
-    context->current_func = node;
+    context->current_func = c_ast_func_cast(node);
 
     {
-        struct c_ast_node *statement_block = c_ast_func_body(node);
-        for (; statement_block != NULL; statement_block = c_ast_node_next(statement_block)) {
+        struct c_ast_statement_block *statement_block = c_ast_func_body(node);
+        while (statement_block != NULL) {
             c_ast_node_evaluate(statement_block, context);
+        
+            statement_block = c_ast_node_next_typed(statement_block, c_ast_statement_block);
         }
     }
 
@@ -41,15 +46,21 @@ struct c_ast_node *c_ast_evaluate_func(struct c_ast_node *node, struct c_ast_con
     return NULL;
 }
 
-struct c_ast_node *c_ast_func_create(const char *symbol, size_t symbol_len, struct c_ast_node *signature, struct c_ast_node *body) {
-
+struct c_ast_node *c_ast_func_create(const struct c_ast_create_info *create_info) {
     struct c_ast_func *node = malloc(sizeof *node);
     memset(node, 0, sizeof *node);
-    node->node_type = c_ast_node_type_func;
-    node->node_evaluate_fn = c_ast_evaluate_func;
-    strncpy(node->symbol, symbol, symbol_len);
-    node->signature = signature;
-    node->body = body;
+    node->type = c_ast_node_func;
+    node->evaluate_fn = c_ast_evaluate_func;
+    node->return_decl_spec = c_ast_decl_spec_cast(create_info->ast_node);
+
+    create_info = create_info->next;
+    strncpy(node->symbol, create_info->view.begin, c_view_len(create_info->view));
+
+    create_info = create_info->next;
+    //node->
+    //strncpy(node->symbol, symbol, symbol_len);
+    //node->signature = c_ast_func_sig_cast(signature);
+    //node->body = c_ast_statement_block_cast(body);
 
     return c_ast_node_cast(node);
 }

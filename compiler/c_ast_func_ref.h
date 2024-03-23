@@ -8,7 +8,7 @@
 #define c_ast_func_ref_symbol(node) (((struct c_ast_func_ref *)(node))->func_symbol)
 
 struct c_ast_func_ref {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     char func_symbol[32u];
 };

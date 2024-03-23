@@ -76,6 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\jlyda\source\repos\bagelc\compiler;C:\Users\jlyda\source\repos\bagelc\lexer;C:\Users\jlyda\source\repos\bagelc\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -89,6 +90,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Users\jlyda\source\repos\bagelc\common;C:\Users\jlyda\source\repos\bagelc\compiler;C:\Users\jlyda\source\repos\bagelc\lexer;C:\Users\jlyda\source\repos\bagelc\parser;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -100,53 +102,65 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\home\projects\bagelc\lexer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\home\projects\bagelc\lexer;C:\Users\jlyda\source\repos\bagelc\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="compiler\c_ast_binary_op.c" />
     <ClCompile Include="compiler\c_ast_context.c" />
+    <ClCompile Include="compiler\c_ast_decl.c" />
+    <ClCompile Include="compiler\c_ast_decl_spec.c" />
     <ClCompile Include="compiler\c_ast_flow_control.c" />
     <ClCompile Include="compiler\c_ast_func.c" />
     <ClCompile Include="compiler\c_ast_func_arg.c" />
     <ClCompile Include="compiler\c_ast_func_call.c" />
     <ClCompile Include="compiler\c_ast_func_ref.c" />
-    <ClCompile Include="compiler\c_ast_func_sig.c" />
+    <ClCompile Include="compiler\c_ast_param_list.c" />
     <ClCompile Include="compiler\c_ast_literal.c" />
     <ClCompile Include="compiler\c_ast_node.c" />
     <ClCompile Include="compiler\c_ast_return.c" />
-    <ClCompile Include="compiler\c_ast_source_file.c" />
+    <ClCompile Include="compiler\c_ast_translation_unit.c" />
     <ClCompile Include="compiler\c_ast_statement.c" />
     <ClCompile Include="compiler\c_ast_statement_block.c" />
     <ClCompile Include="compiler\c_ast_structure.c" />
-    <ClCompile Include="compiler\c_ast_typename.c" />
-    <ClCompile Include="compiler\c_ast_variable.c" />
+    <ClCompile Include="compiler\c_ast_type_spec.c" />
+    <ClCompile Include="compiler\c_ast_declaration.c" />
     <ClCompile Include="compiler\c_ast_variable_ref.c" />
+    <ClCompile Include="lexer\c_lexer_token_stream.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="parser\c_parser.c" />
+    <ClCompile Include="parser\c_parser_grammar.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\c_view.h" />
     <ClInclude Include="compiler\c_ast_binary_op.h" />
     <ClInclude Include="compiler\c_ast_builtin_types.h" />
     <ClInclude Include="compiler\c_ast_context.h" />
+    <ClInclude Include="compiler\c_ast_decl.h" />
+    <ClInclude Include="compiler\c_ast_decl_spec.h" />
     <ClInclude Include="compiler\c_ast_expression.h" />
     <ClInclude Include="compiler\c_ast_flow_control.h" />
     <ClInclude Include="compiler\c_ast_func.h" />
     <ClInclude Include="compiler\c_ast_func_arg.h" />
     <ClInclude Include="compiler\c_ast_func_call.h" />
     <ClInclude Include="compiler\c_ast_func_ref.h" />
-    <ClInclude Include="compiler\c_ast_func_sig.h" />
+    <ClInclude Include="compiler\c_ast_param_list.h" />
     <ClInclude Include="compiler\c_ast_literal.h" />
     <ClInclude Include="compiler\c_ast_node.h" />
     <ClInclude Include="compiler\c_ast_return.h" />
-    <ClInclude Include="compiler\c_ast_source_file.h" />
+    <ClInclude Include="compiler\c_ast_translation_unit.h" />
     <ClInclude Include="compiler\c_ast_statement.h" />
     <ClInclude Include="compiler\c_ast_statement_block.h" />
     <ClInclude Include="compiler\c_ast_structure.h" />
-    <ClInclude Include="compiler\c_ast_typename.h" />
+    <ClInclude Include="compiler\c_ast_type_spec.h" />
     <ClInclude Include="compiler\c_ast_unary_op.h" />
-    <ClInclude Include="compiler\c_ast_variable.h" />
+    <ClInclude Include="compiler\c_ast_declaration.h" />
     <ClInclude Include="compiler\c_ast_variable_ref.h" />
-    <ClInclude Include="parser\c_lexer_token.h" />
+    <ClInclude Include="compiler\c_ast_node_type.h" />
+    <ClInclude Include="lexer\c_lexer_token.h" />
+    <ClInclude Include="lexer\c_lexer_token_stream.h" />
+    <ClInclude Include="parser\c_parser.h" />
+    <ClInclude Include="parser\c_parser_grammar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

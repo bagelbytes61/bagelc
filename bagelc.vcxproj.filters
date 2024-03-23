@@ -22,7 +22,7 @@
     <ClCompile Include="compiler\c_ast_func_ref.c">
       <Filter>compiler</Filter>
     </ClCompile>
-    <ClCompile Include="compiler\c_ast_func_sig.c">
+    <ClCompile Include="compiler\c_ast_param_list.c">
       <Filter>compiler</Filter>
     </ClCompile>
     <ClCompile Include="compiler\c_ast_literal.c">
@@ -34,7 +34,7 @@
     <ClCompile Include="compiler\c_ast_return.c">
       <Filter>compiler</Filter>
     </ClCompile>
-    <ClCompile Include="compiler\c_ast_source_file.c">
+    <ClCompile Include="compiler\c_ast_translation_unit.c">
       <Filter>compiler</Filter>
     </ClCompile>
     <ClCompile Include="compiler\c_ast_statement.c">
@@ -46,16 +46,25 @@
     <ClCompile Include="compiler\c_ast_structure.c">
       <Filter>compiler</Filter>
     </ClCompile>
-    <ClCompile Include="compiler\c_ast_typename.c">
+    <ClCompile Include="compiler\c_ast_type_spec.c">
       <Filter>compiler</Filter>
     </ClCompile>
-    <ClCompile Include="compiler\c_ast_variable.c">
+    <ClCompile Include="compiler\c_ast_declaration.c">
       <Filter>compiler</Filter>
     </ClCompile>
     <ClCompile Include="compiler\c_ast_variable_ref.c">
       <Filter>compiler</Filter>
     </ClCompile>
     <ClCompile Include="main.c" />
+    <ClCompile Include="parser\c_parser_grammar.c" />
+    <ClCompile Include="parser\c_parser.c" />
+    <ClCompile Include="lexer\c_lexer_token_stream.c" />
+    <ClCompile Include="compiler\c_ast_decl_spec.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler\c_ast_decl.c">
+      <Filter>compiler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compiler\c_ast_binary_op.h">
@@ -85,7 +94,7 @@
     <ClInclude Include="compiler\c_ast_func_ref.h">
       <Filter>compiler</Filter>
     </ClInclude>
-    <ClInclude Include="compiler\c_ast_func_sig.h">
+    <ClInclude Include="compiler\c_ast_param_list.h">
       <Filter>compiler</Filter>
     </ClInclude>
     <ClInclude Include="compiler\c_ast_literal.h">
@@ -97,7 +106,7 @@
     <ClInclude Include="compiler\c_ast_return.h">
       <Filter>compiler</Filter>
     </ClInclude>
-    <ClInclude Include="compiler\c_ast_source_file.h">
+    <ClInclude Include="compiler\c_ast_translation_unit.h">
       <Filter>compiler</Filter>
     </ClInclude>
     <ClInclude Include="compiler\c_ast_statement.h">
@@ -109,20 +118,33 @@
     <ClInclude Include="compiler\c_ast_structure.h">
       <Filter>compiler</Filter>
     </ClInclude>
-    <ClInclude Include="compiler\c_ast_typename.h">
+    <ClInclude Include="compiler\c_ast_type_spec.h">
       <Filter>compiler</Filter>
     </ClInclude>
     <ClInclude Include="compiler\c_ast_unary_op.h">
       <Filter>compiler</Filter>
     </ClInclude>
-    <ClInclude Include="compiler\c_ast_variable.h">
+    <ClInclude Include="compiler\c_ast_declaration.h">
       <Filter>compiler</Filter>
     </ClInclude>
     <ClInclude Include="compiler\c_ast_variable_ref.h">
       <Filter>compiler</Filter>
     </ClInclude>
-    <ClInclude Include="parser\c_lexer_token.h">
+    <ClInclude Include="lexer\c_lexer_token.h">
       <Filter>lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="lexer\c_lexer_token_stream.h" />
+    <ClInclude Include="parser\c_parser.h" />
+    <ClInclude Include="parser\c_parser_grammar.h" />
+    <ClInclude Include="compiler\c_ast_node_type.h" />
+    <ClInclude Include="common\c_view.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_decl_spec.h">
+      <Filter>compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\c_ast_decl.h">
+      <Filter>compiler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +153,9 @@
     </Filter>
     <Filter Include="lexer">
       <UniqueIdentifier>{db025a20-0eed-4f09-9c1f-ce1731cb61e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{7ffdebc1-04bd-44da-9329-eabb2e3775f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -3,64 +3,51 @@
 
 #pragma once
 
+#include "c_view.h"
+
+#include "c_ast_node_type.h"
+
 struct c_ast_context;
 
 typedef struct c_ast_node *(*c_ast_evaluate_fn)(struct c_ast_node *, struct c_ast_context *);
 
-enum c_ast_node_type {
-    c_ast_node_type_program,
-    c_ast_node_type_source_file,
-
-    c_ast_node_type_unary_op,
-    c_ast_node_type_binary_op,
-
-    c_ast_node_type_statement,
-    c_ast_node_type_statement_block,
-
-    c_ast_node_type_literal,
-
-    c_ast_node_type_enum_tag,
-    c_ast_node_type_struct_tag,
-    c_ast_node_type_union_tag,
-
-    c_ast_node_type_typename,
-
-    c_ast_node_type_func_call,
-
-    c_ast_node_type_func,
-    c_ast_node_type_func_ref,
-
-    c_ast_node_type_variable,
-    c_ast_node_type_variable_ref,
-
-    c_ast_node_type_func_arg,
-    c_ast_node_type_func_param,
-    c_ast_node_type_func_sig,
-
-    c_ast_node_type_return,
+enum c_ast_create_info_type {
+    c_ast_create_info_view,
+    c_ast_create_info_ast_node
 };
 
-#define c_ast_node_contents                 \
-    enum c_ast_node_type node_type;         \
-    c_ast_evaluate_fn    node_evaluate_fn;  \
-    struct c_ast_node   *node_next;         \
-    struct c_ast_node   *node_parent
+struct c_ast_create_info {
+    enum c_ast_create_info_type type;
+    struct c_ast_create_info   *next;
+    union {
+        struct c_view      view;
+        struct c_ast_node *ast_node;
+    };
+};
+
+#define c_ast_node_contents            \
+    enum c_ast_node_type type;         \
+    c_ast_evaluate_fn    evaluate_fn;  \
+    struct c_ast_node   *next;         \
+    struct c_ast_node   *parent;
+
+
+#define c_ast_node_type(node)              ((node)->type)
+#define c_ast_node_evaluate(node, context) ((node)->evaluate_fn(c_ast_node_cast(node), context))
+#define c_ast_node_next(node)              ((node)->next)
+#define c_ast_node_next_typed(node, type)  ((struct type *)((node)->next))
+#define c_ast_node_parent(node)            ((node)->parent)
+
+struct c_ast_node {
+    c_ast_node_contents
+};
 
 #define c_ast_node_cast(node) ((struct c_ast_node *)(node))
 
-#define c_ast_node_type(node)              ((node)->node_type)
-#define c_ast_node_evaluate(node, context) ((node)->node_evaluate_fn(c_ast_node_cast(node), context))
-#define c_ast_node_next(node)              ((node)->node_next)
-#define c_ast_node_parent(node)            ((node)->node_parent)
-
-struct c_ast_node {
-    c_ast_node_contents;
-};
-
 static struct c_ast_node *c_ast_node_list_last(struct c_ast_node *node_list) {
 
-    while (node_list->node_next) {
-        node_list = node_list->node_next;
+    while (node_list->next) {
+        node_list = node_list->next;
     }
 
     return node_list;
@@ -68,7 +55,7 @@ static struct c_ast_node *c_ast_node_list_last(struct c_ast_node *node_list) {
 
 static struct c_ast_node *c_ast_node_list_append(struct c_ast_node *node_list, struct c_ast_node *node) {
 
-    c_ast_node_list_last(node_list)->node_next = node;
+    c_ast_node_list_last(node_list)->next = node;
 
     return node_list;
 }

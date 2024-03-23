@@ -8,7 +8,7 @@
 #define c_ast_int_value(node) (((struct c_ast_int *)(node))->value)
 
 struct c_ast_int {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     int value;
 };
@@ -16,7 +16,7 @@ struct c_ast_int {
 #define c_ast_float_value(node) (((struct c_ast_float *))(node)->value)
 
 struct c_ast_float {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     float value;
 };

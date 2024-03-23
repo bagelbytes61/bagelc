@@ -10,7 +10,7 @@
 #define c_ast_if_false_path(node) (((struct c_ast_if *)(node))->false_path)
 
 struct c_ast_if {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     struct c_ast_node *condition_exp;
     struct c_ast_node *true_path;

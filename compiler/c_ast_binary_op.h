@@ -16,7 +16,7 @@ enum c_ast_binary_op_type {
 #define c_ast_binary_op_rhs_exp(node) (((struct c_ast_binary_op *)(node))->rhs_exp)
 
 struct c_ast_binary_op {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     struct c_ast_node *lhs_exp;
     struct c_ast_node *rhs_exp;

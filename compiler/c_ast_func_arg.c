@@ -11,8 +11,8 @@ static struct c_ast_node *c_ast_evaluate_func_arg(struct c_ast_node *node, struc
 struct c_ast_node *c_ast_func_arg_create(struct c_ast_node *expression) {
     struct c_ast_func_arg *node = c_ast_func_arg_cast(malloc(sizeof *node));
     memset(node, 0, sizeof *node);
-    node->node_type = c_ast_node_type_func_arg;
-    node->node_evaluate_fn = c_ast_evaluate_func_arg;
+    node->type = c_ast_node_func_arg;
+    node->evaluate_fn = c_ast_evaluate_func_arg;
     node->exp = expression;
 
     return c_ast_node_cast(node);

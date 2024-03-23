@@ -8,7 +8,7 @@
 #define c_ast_return_exp(node) (((struct c_ast_return *)(node))->exp)
 
 struct c_ast_return {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     struct c_ast_node *exp;
 };

@@ -12,8 +12,8 @@ static struct c_ast_node *c_ast_evaluate_statement(struct c_ast_node *node, stru
 struct c_ast_node *c_ast_statement_create(struct c_ast_node *statement) {
     struct c_ast_statement *node = malloc(sizeof *node);
     memset(node, 0, sizeof *node);
-    node->node_type = c_ast_node_type_statement;
-    node->node_evaluate_fn = c_ast_evaluate_statement;
+    node->type = c_ast_node_statement;
+    node->evaluate_fn = c_ast_evaluate_statement;
     node->statement = statement;
 
     return c_ast_node_cast(node);

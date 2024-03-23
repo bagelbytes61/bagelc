@@ -9,7 +9,7 @@
 #define c_ast_func_call_args(node) (((struct c_ast_func_call *)(node))->func_args)
 
 struct c_ast_func_call {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     struct c_ast_func_ref *func_ref;
     struct c_ast_func_arg *func_args;

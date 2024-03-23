@@ -24,9 +24,9 @@ uint8_t esi_status, edi_status, ebp_status;
 uint8_t eip_status, esp_status;
 
 struct c_ast_context {
-    struct c_ast_node *current_source_file;
-    struct c_ast_node *current_func;
-    struct c_ast_node *current_statement_block;
+    struct c_ast_translation_unit *current_translation_unit;
+    struct c_ast_func             *current_func;
+    struct c_ast_statement_block  *current_statement_block;
 
     uint32_t esp_offset;
 

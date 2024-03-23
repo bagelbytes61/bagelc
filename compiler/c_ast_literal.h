@@ -10,7 +10,7 @@
 #define c_ast_literal_float_value(node) (((struct c_ast_literal *)(node))->value.float_value)
 
 struct c_ast_literal {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     struct c_ast_typename      *typename;
 

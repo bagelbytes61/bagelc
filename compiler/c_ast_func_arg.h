@@ -8,7 +8,7 @@
 #define c_ast_func_arg_exp(node) (((struct c_ast_func_arg *)(node))->exp)
 
 struct c_ast_func_arg {
-    c_ast_node_contents;
+    c_ast_node_contents
 
     struct c_ast_node *exp;
 };

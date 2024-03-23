@@ -8,9 +8,9 @@
 #define c_ast_variable_ref_symbol(node)  (((struct c_ast_variable_ref *)(node))->symbol)
 
 struct c_ast_variable_ref {
-    c_ast_node_contents;
+    c_ast_node_contents
 
-    char symbol[255];
+    char symbol[32u];
 };
 
 #define c_ast_variable_ref_cast(node) ((struct c_ast_variable_ref *)(node))
